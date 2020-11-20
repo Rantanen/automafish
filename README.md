@@ -65,6 +65,42 @@ assert_eq!("Hello World! This Is Rust!", output);
 assert_eq!(2, exclamations);
 ```
 
+## Related crates
+
+- **[Proxide]** - A debugging proxy for HTTP/2 and especially gRPC traffic. The
+  primary application using Automafish in its scripting implementation through
+  Metamorfish.
+- **[Metamorfish]** - A selector-based mutation engine intended to allow easy
+  definition of operations to modify data structures intercepted by Proxide.
+  Uses Automafish to implement state machines for the selectors.
+
+[Proxide]: https://github.com/Rantanen/proxide
+[Metamorfish]: https://github.com/Rantanen/metamorfish
+
+In addition there seem to be other generic state machine crates that I
+discovered while looking into options. If you ended up here looking for one,
+you might be interested in the following crates as well. Note that I haven't
+personally tested any of these crates.
+
+- [automata] - A general purpose automata crate that, based on its description,
+  implements DFA/NFA/Regular Expression conversion operations. There is a long
+  list of planned features, although the development seems to have been
+  abandoned.
+- [nifty] - A crate for generating DFAs. Based on its readme, the macro-based
+  approach seems quite neat for static DFAs. My use case required runtime
+  specification of DFAs based on user scripts, which made me move away from
+  this one. The crate seems to also be limited to DFAs with no support for
+  building them from NFAs.
+- [rustomaton] - An automaton manipulation library. Seems to include various
+  conversion functions between various kinds of automatons (including DFA and
+  NFA). However the execution phase of automatons seems to require all of the
+  input beforehand so I wasn't sure whether it would suit my needs for a Moore
+  machine that is able to execute actions in various intermediate states.
+
+[automata]: https://crates.io/crates/automata
+[nifty]: https://crates.io/crates/nifty
+[rustomaton]: https://crates.io/crates/rustomaton
+
 ## Goals
 
 The only current goal for Automafish is providing a somewhat efficient state
